@@ -22,10 +22,30 @@ export class ProductService {
   }
 
   updateProduct(productId, product) {
-   return this.db.object('/products/'+productId).update(product);
+    return this.db.object('/products/' + productId).update(product);
   }
 
-  deleteProduct(productId){
-    return this.db.object('/products/'+productId).remove();
+  deleteProduct(productId) {
+    return this.db.object('/products/' + productId).remove();
   }
+  mapFB_product(FB_product: any) {
+    let product = {} as product;
+  
+    product.key = FB_product.key;
+    product.title = FB_product.payload.val().title;
+    product.price = FB_product.payload.val().price;
+    product.category = FB_product.payload.val().category;
+    product.imageUrl = FB_product.payload.val().imageUrl;
+    return product;
+
+
+  }
+  mapFB_products(FB_products: any) {
+    let products: product[] = [];
+    FB_products.forEach(FB_product => {
+      products.push(this.mapFB_product(FB_product));
+    });
+    return products;
+  }
+
 }
