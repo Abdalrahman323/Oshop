@@ -1,3 +1,4 @@
+import { product } from './models/product';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
 
@@ -6,17 +7,21 @@ import { Injectable } from '@angular/core';
 })
 export class ProductService {
 
-  constructor(private db:AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase) { }
 
-  create(product){
-   return this.db.list('/products').push(product);
+  create(product) {
+    return this.db.list('/products').push(product);
   }
 
-  getAll(){
+  getAll() {
     return this.db.list('/products').snapshotChanges();
   }
 
-  getProduct(prductId){
-  return this.db.object('/products/'+prductId).snapshotChanges();
+  getProduct(prductId) {
+    return this.db.object('/products/' + prductId).snapshotChanges();
+  }
+
+  updateProduct(productId, product) {
+   return this.db.object('/products/'+productId).update(product);
   }
 }
