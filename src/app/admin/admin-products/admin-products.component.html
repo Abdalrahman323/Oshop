@@ -4,7 +4,29 @@
 <p>
     <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search...">
 </p>
-<table class="table">
+<p-table [value]="filterdProducts" styleClass="p-datatable-striped" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [paginator]="true">
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="title">Title
+                <p-sortIcon field="title"></p-sortIcon>
+            </th>
+            <th pSortableColumn="price">Title
+                <p-sortIcon field="price"></p-sortIcon>
+            </th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td>{{product.title}}</td>
+            <td>{{product.price}}</td>
+            <td>
+                <a [routerLink]="['/admin/products',product.key]"> Edit </a>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+<!-- <table class="table">
     <thead>
         <tr>
             <th>Title</th>
@@ -23,4 +45,4 @@
         </tr>
     </tbody>
 
-</table>
+</table> -->
