@@ -32,11 +32,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
     });
 
     this.categories$ = this.CategoryService.getAllCategories();
-
+    // handling the navigation case , listen to queryParamMap observable
     this.route.queryParamMap.subscribe(params => {
       this.category = params.get('category');
-      console.log("catch +" + this.category);
-      console.log(JSON.stringify(this.filteredProducts));
       this.filterByProducts();
 
     })
@@ -44,8 +42,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   filterByProducts() {
-    console.log("called ");
-
     this.filteredProducts = (this.category) ?
       this.products.filter(product => product.category == this.category) :
       this.products;
