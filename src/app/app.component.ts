@@ -28,13 +28,19 @@ export class AppComponent {
   // But in this case it doesn't really matter
   // But if you wanna want to unsubcribe feel free to implement  onDestroy interface
 
-  constructor(private userService:UserService, private auth: AuthService, private router: Router) {
+  constructor(private userService: UserService, private auth: AuthService, private router: Router) {
     auth.user$.subscribe(user => {
-      if (user) {
-        this.userService.save(user);
-        let returnUrl = localStorage.getItem('returnUrl')
-        router.navigateByUrl(returnUrl);
-      }
+
+      if (!user) return;
+      // if the user is logged in , we read returnUrl (after coming from google) from local storage and navigate the user
+
+      this.userService.save(user);
+      let returnUrl = localStorage.getItem('returnUrl')
+      if (!returnUrl) return
+      localStorage.removeItem('returnUrl');
+      router.navigateByUrl(returnUrl);
+
+
     })
   }
 }

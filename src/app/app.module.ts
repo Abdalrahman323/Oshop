@@ -7,7 +7,6 @@ import { AuthService } from './auth.service';
 import { LoginComponent } from './login/login.component';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
 import { NgModule } from '@angular/core';
 import { CustomFormsModule } from 'ng2-validation'
 
@@ -31,8 +30,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { FormsModule } from '@angular/forms';
 import {TableModule} from 'primeng/table';
-
-
 
 @NgModule({
   declarations: [
@@ -59,7 +56,7 @@ import {TableModule} from 'primeng/table';
     TableModule,
     BrowserAnimationsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      { path: '', component: ProductsComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'login', component: LoginComponent },

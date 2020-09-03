@@ -13,7 +13,7 @@ export class ProductService {
     return this.db.list('/products').push(product);
   }
 
-  getAll() {
+  getAllProducts() {
     return this.db.list('/products').snapshotChanges();
   }
 
