@@ -30,6 +30,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { FormsModule } from '@angular/forms';
 import {TableModule} from 'primeng/table';
+import { ProductsFilterComponent } from './products/products-filter/products-filter.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {TableModule} from 'primeng/table';
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductsFilterComponent
   ],
   imports: [
     BrowserModule,

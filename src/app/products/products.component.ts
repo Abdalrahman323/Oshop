@@ -1,9 +1,9 @@
-import { CategoryService } from './../category.service';
 import { product } from './../models/product';
 import { ProductService } from './../product.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-products',
@@ -15,29 +15,28 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   products: product[] = [];
   filteredProducts: product[] = [];
-  categories$;
   category: string;
 
   constructor(
     private route: ActivatedRoute,
-    private ProductService: ProductService, private CategoryService: CategoryService) { }
+    private ProductService: ProductService) { }
 
   ngOnInit(): void {
 
 
-    this.subscriptionGetAllProducts = this.ProductService.getAllProducts().subscribe(products => {
-      this.filteredProducts = this.products = this.ProductService.mapFB_products(products);
-      // handling the refresh page with queyParam in the url ; so need to filter the products
-      this.filterByProducts();
-    });
+    this.subscriptionGetAllProducts = this.ProductService.getAllProducts()
+      .pipe(
+        switchMap(products => {
+          this.filteredProducts = this.products = this.ProductService.mapFB_products(products);
+          return this.route.queryParamMap
+        }))
+      .subscribe(params => {  // we have to make sure the products arrive first before we doing any filter      
+        this.category = params.get('category');
+        this.filterByProducts();
 
-    this.categories$ = this.CategoryService.getAllCategories();
-    // handling the navigation case , listen to queryParamMap observable
-    this.route.queryParamMap.subscribe(params => {
-      this.category = params.get('category');
-      this.filterByProducts();
+      })
 
-    })
+
 
   }
 
