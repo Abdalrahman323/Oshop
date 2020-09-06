@@ -31,6 +31,7 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
 import { FormsModule } from '@angular/forms';
 import {TableModule} from 'primeng/table';
 import { ProductsFilterComponent } from './products/products-filter/products-filter.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ProductsFilterComponent } from './products/products-filter/products-fil
     AdminProductsComponent,
     AdminOrdersComponent,
     ProductFormComponent,
-    ProductsFilterComponent
+    ProductsFilterComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
