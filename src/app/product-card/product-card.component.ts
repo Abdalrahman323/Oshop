@@ -10,12 +10,25 @@ import { Component, Input } from '@angular/core';
 export class ProductCardComponent {
   @Input('product') product: product
   @Input('show-actions') showActions: boolean = true;
+  @Input('shopping-cart') shoppingCart;
   constructor(private ShoppingCartService: ShoppingCartService) { }
 
-  addToCart(product: product) {
+  addToCart() {
 
-    this.ShoppingCartService.addToCart(product);
+    this.ShoppingCartService.addToCart(this.product);
+  }
+  removeFromCart(){
+    this.ShoppingCartService.removeFromCart(this.product);
 
   }
+  getQuantity() {
+    // because intially when we get the shopping cart from firebase
+    // it's going to be a tiny delay , so during this time this shopping cart is going to be null
+    if (!this.shoppingCart) return 0;
+
+    let item = this.shoppingCart.items[this.product.key];
+    return item ? item.quantity : 0;
+  }
+
 
 }
