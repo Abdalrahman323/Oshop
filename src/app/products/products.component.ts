@@ -1,5 +1,5 @@
 import { ShoppingCartService } from './../shopping-cart.service';
-import { product } from './../models/product';
+import { Product } from './../models/product';
 import { ProductService } from './../product.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -16,8 +16,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   subscriptionGetCart: Subscription;
 
 
-  products: product[] = [];
-  filteredProducts: product[] = [];
+  products: Product[] = [];
+  filteredProducts: Product[] = [];
   category: string;
   cart: any;
 
@@ -28,8 +28,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
 
-    this.subscriptionGetCart = (await this.ShoppingCartService.getCart()).snapshotChanges()
-    .subscribe(cart => this.cart = cart.payload.val())
+    this.subscriptionGetCart = (await this.ShoppingCartService.getCart())
+    .subscribe(cart => this.cart = cart);
 
     this.subscriptionGetAllProducts = this.ProductService.getAllProducts()
       .pipe(

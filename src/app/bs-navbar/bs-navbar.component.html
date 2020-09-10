@@ -9,7 +9,12 @@
     <ul class="navbar-nav mr-auto">
 
       <li class="nav-item">
-        <a class="nav-link" routerLink="/shopping-cart">Shopping Cart</a>
+        <a class="nav-link" routerLink="/shopping-cart">
+          Shopping Cart
+          <span *ngIf="cart$ | async as cart" class="bagde badge-warning badge-pill">
+            {{cart.totalItemsCount }}
+          </span>
+        </a>
       </li>
       <!--this is the else block of Down Ngif -->
       <ng-template #anonymousUser>

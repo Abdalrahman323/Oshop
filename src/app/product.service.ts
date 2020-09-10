@@ -1,4 +1,4 @@
-import { product } from './models/product';
+import { Product } from './models/product';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
 
@@ -29,7 +29,7 @@ export class ProductService {
     return this.db.object('/products/' + productId).remove();
   }
   mapFB_product(FB_product: any) {
-    let product = {} as product;
+    let product = {} as Product;
   
     product.key = FB_product.key;
     product.title = FB_product.payload.val().title;
@@ -41,7 +41,7 @@ export class ProductService {
 
   }
   mapFB_products(FB_products: any) {
-    let products: product[] = [];
+    let products: Product[] = [];
     FB_products.forEach(FB_product => {
       products.push(this.mapFB_product(FB_product));
     });

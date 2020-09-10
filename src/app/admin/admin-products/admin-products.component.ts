@@ -1,4 +1,4 @@
-import { product } from './../../models/product';
+import { Product } from './../../models/product';
 import { ProductService } from './../../product.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -9,8 +9,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
-  products: product[];
-  filterdProducts: product[];
+  products: Product[];
+  filterdProducts: Product[];
   subscription: Subscription
   
   constructor(private ProductService: ProductService) {
