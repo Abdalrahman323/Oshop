@@ -43,18 +43,23 @@ export class ShoppingCartService {
     return result.key;
   }
   addToCart(product: Product) {
-    this.updateItemQuantity(product, 1);
+    this.updateItem(product, 1);
   }
   removeFromCart(product: Product) {
-    this.updateItemQuantity(product, -1);
+    this.updateItem(product, -1);
 
   }
-  private async updateItemQuantity(product: Product, change: number) {
+  private async updateItem(product: Product, change: number) {
     let cartId = await this.getOrCreateCardId();
     let item$ = this.getItem(cartId, product.key);
     item$.snapshotChanges().pipe(take(1)).subscribe((item: any) => {
       if (item.payload.val()) item$.update({ quantity: item.payload.val().quantity + change });
-      else item$.set({ product: product, quantity: 1 });
+      else item$.set({
+        //product: product,
+        title:product.title,
+        imageUrl:product.imageUrl,
+        price:product.price,
+        quantity: 1 });
     })
   }
 }
