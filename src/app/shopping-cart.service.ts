@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { JsonPipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +18,10 @@ export class ShoppingCartService {
   async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCardId();
     return this.db.object('/shopping-carts/' + cartId)
-    .snapshotChanges()
-    .pipe(
-      map((x : any) =>
-         new ShoppingCart(x.payload.val().items)
+      .snapshotChanges()
+      .pipe(
+        map((x: any) =>
+          new ShoppingCart(x.payload.val().items)
         ));
   }
 
@@ -33,9 +34,9 @@ export class ShoppingCartService {
 
   }
 
-  async clearCart(){
+  async clearCart() {
     let cartId = await this.getOrCreateCardId();
-    this.db.object('/shopping-carts/'+cartId+'/items').remove();
+    this.db.object('/shopping-carts/' + cartId + '/items').remove();
   }
 
   private createCart() {
@@ -63,13 +64,34 @@ export class ShoppingCartService {
     let cartId = await this.getOrCreateCardId();
     let item$ = this.getItem(cartId, product.key);
     item$.snapshotChanges().pipe(take(1)).subscribe((item: any) => {
-      if (item.payload.val()) item$.update({ quantity: item.payload.val().quantity + change });
-      else item$.set({
-        //product: product,
-        title:product.title,
-        imageUrl:product.imageUrl,
-        price:product.price,
-        quantity: 1 });
+      console.log(JSON.stringify(item)+"||||");
+      let quantity = item.payload.val()? item.payload.val().quantity + change : change;
+      // let quantity = (item.payload.val().quantity || 0) + change;
+      if(quantity == 0) item$.remove();
+      else
+      item$.update({
+        title: product.title,
+        imageUrl: product.imageUrl,
+        price: product.price,
+        quantity: quantity
+      });
+
     })
   }
 }
+  // private async updateItem(product: Product, change: number) {
+  //   let cartId = await this.getOrCreateCardId();
+  //   let item$ = this.getItem(cartId, product.key);
+  //   item$.snapshotChanges().pipe(take(1)).subscribe((item: any) => {
+  //     let quantity = (item.quantity || 0) + change; 
+
+  //     if (item.payload.val()) item$.update({ quantity: item.payload.val().quantity + change });
+  //     else item$.set({
+  //       //product: product,
+  //       title:product.title,
+  //       imageUrl:product.imageUrl,
+  //       price:product.price,
+  //       quantity: 1 });
+  //   })
+  // }
+
