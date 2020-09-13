@@ -64,7 +64,6 @@ export class ShoppingCartService {
     let cartId = await this.getOrCreateCardId();
     let item$ = this.getItem(cartId, product.key);
     item$.snapshotChanges().pipe(take(1)).subscribe((item: any) => {
-      console.log(JSON.stringify(item)+"||||");
       let quantity = item.payload.val()? item.payload.val().quantity + change : change;
       // let quantity = (item.payload.val().quantity || 0) + change;
       if(quantity == 0) item$.remove();
