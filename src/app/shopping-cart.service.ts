@@ -14,12 +14,6 @@ export class ShoppingCartService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  private createCart() {
-    return this.db.list('/shopping-carts').push({
-      dataCreated: new Date().getTime()
-    });
-  }
-
   async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCardId();
     return this.db.object('/shopping-carts/' + cartId)
@@ -29,6 +23,28 @@ export class ShoppingCartService {
          new ShoppingCart(x.payload.val().items)
         ));
   }
+
+  async addToCart(product: Product) {
+    this.updateItem(product, 1);
+  }
+
+  async removeFromCart(product: Product) {
+    this.updateItem(product, -1);
+
+  }
+
+  async clearCart(){
+    let cartId = await this.getOrCreateCardId();
+    this.db.object('/shopping-carts/'+cartId+'/items').remove();
+  }
+
+  private createCart() {
+    return this.db.list('/shopping-carts').push({
+      dataCreated: new Date().getTime()
+    });
+  }
+
+
   private getItem(cartId: string, productId: string) {
     return this.db.object('/shopping-carts/' + cartId + '/items/' + productId); // reference  to item node in firebase
 
@@ -42,13 +58,7 @@ export class ShoppingCartService {
     localStorage.setItem('cartId', result.key)
     return result.key;
   }
-  addToCart(product: Product) {
-    this.updateItem(product, 1);
-  }
-  removeFromCart(product: Product) {
-    this.updateItem(product, -1);
 
-  }
   private async updateItem(product: Product, change: number) {
     let cartId = await this.getOrCreateCardId();
     let item$ = this.getItem(cartId, product.key);
