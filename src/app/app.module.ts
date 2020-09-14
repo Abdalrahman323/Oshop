@@ -1,11 +1,11 @@
-import { ShoppingCartService } from './shopping-cart.service';
-import { OrderService } from "./order.service";
-import { ProductService } from './product.service';
-import { CategoryService } from './category.service';
+import { ShoppingCartService } from './shared/services/shopping-cart.service';
+import { OrderService } from "./shared/services/order.service";
+import { ProductService } from './shared/services/product.service';
+import { CategoryService } from './shared/services/category.service';
 import { AdminAuthGuard } from './admin-auth-guard.service';
-import { UserService } from './user.service';
-import { AuthGuard } from './auth-guard.service';
-import { AuthService } from './auth.service';
+import { UserService } from './shared/services/user.service';
+import { AuthGuard } from './shared/services/auth-guard.service';
+import { AuthService } from './shared/services/auth.service';
 import { LoginComponent } from './login/login.component';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -33,8 +33,8 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
 import { FormsModule } from '@angular/forms';
 import {TableModule} from 'primeng/table';
 import { ProductsFilterComponent } from './products/products-filter/products-filter.component';
-import { ProductCardComponent } from './product-card/product-card.component';
-import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { ProductCardComponent } from './shared/components/product-card/product-card.component';
+import { ProductQuantityComponent } from './shared/components/product-quantity/product-quantity.component';
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 

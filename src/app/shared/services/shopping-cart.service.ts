@@ -1,5 +1,5 @@
-import { Product } from './models/product';
-import { ShoppingCart } from './models/shopping-cart';
+import { Product } from '../models/product';
+import { ShoppingCart } from '../models/shopping-cart';
 
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { Injectable } from '@angular/core';

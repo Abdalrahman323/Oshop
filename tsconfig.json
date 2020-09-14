@@ -17,12 +17,7 @@
     ],
     "baseUrl": "./",
 
-    // "baseUrl": "./src",
-    // "paths":{
-    //   "shared/*":[
-    //     "app/shared/*"
-    //   ]
-    // }
+    
 
   }
 }
