@@ -1,5 +1,11 @@
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CustomFormsModule } from 'ng2-validation';
+import { TableModule } from 'primeng/table';
 
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductQuantityComponent } from './components/product-quantity/product-quantity.component';
@@ -14,16 +20,30 @@ import { UserService } from './services/user.service';
 
 
 @NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    CustomFormsModule,
+    TableModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    NgbModule,
+  ],
   declarations: [
     ProductCardComponent,
     ProductQuantityComponent,
   ],
-  imports: [
-    CommonModule
-  ],
   exports:[
     ProductCardComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    CommonModule,
+    FormsModule,
+    CustomFormsModule,
+    TableModule,
+
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    NgbModule,
   ],
   providers: [
     AuthService,
