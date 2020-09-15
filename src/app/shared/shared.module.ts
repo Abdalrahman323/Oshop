@@ -34,13 +34,12 @@ import { UserService } from './services/user.service';
     ProductQuantityComponent,
   ],
   exports:[
-    ProductCardComponent,
-    ProductQuantityComponent,
     CommonModule,
     FormsModule,
+    ProductCardComponent,
+    ProductQuantityComponent,
     CustomFormsModule,
     TableModule,
-
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     NgbModule,
