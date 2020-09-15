@@ -1,0 +1,7 @@
+@import './../../../../styles-variables.scss';
+
+@media (max-width: map-get($grid-breakpoints, sm)) {
+    .categories {
+      max-width: 45%;
+    }
+  }
