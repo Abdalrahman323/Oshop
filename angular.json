@@ -20,7 +20,8 @@
                             "babel-runtime/helpers/extends",
                             "babel-runtime/helpers/slicedToArray",
                             "babel-runtime/helpers/createClass",
-                            "babel-runtime/core-js/get-iterator"
+                            "babel-runtime/core-js/get-iterator",
+                            "firebase"
 
                          ],
                         "outputPath": "dist/oshop",
