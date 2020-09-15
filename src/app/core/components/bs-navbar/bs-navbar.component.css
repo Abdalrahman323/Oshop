@@ -1,3 +1,9 @@
 .dropdown-toggle{
     cursor: pointer;
 }
+.badge-warning{
+    margin-inline-start: 3px;
+}
+.card { 
+    margin-bottom: 80px;
+  } 
