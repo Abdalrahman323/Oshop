@@ -6,6 +6,7 @@
 }
 .card{
     margin-bottom: 30px;
+    max-height: 86.5%;
 }
 .card-footer {
     padding: 0;
