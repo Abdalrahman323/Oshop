@@ -2,6 +2,9 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
 @import "styles-variables";
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
 
 $primary-color: purple;
 $primary-color-hover: #a31998;

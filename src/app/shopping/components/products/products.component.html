@@ -6,10 +6,10 @@
     <div class="col-7 col-sm-8 col-lg-9  ">
         <div *ngIf="cart$ |async as cart" class="row">
             <ng-container *ngFor="let product of filteredProducts ; index as i">
-                <div class="col-12 col-sm-6 col-md-4">
+                <div class="col-12 col-sm-6 col-lg-4">
                   <product-card [product]="product" [shopping-cart]="cart"></product-card>
                 </div>
-                <div *ngIf="(i+1)%2 == 0" class="w-100"></div>
+                <!-- <div *ngIf="(i+1)%2 == 0" class="w-100"></div> -->
             </ng-container>
         </div>
     </div>

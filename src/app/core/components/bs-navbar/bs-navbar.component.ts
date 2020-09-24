@@ -1,10 +1,10 @@
-import { appUser } from '../../../shared/models/app.user';
-import { AuthService } from '../../../shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { ShoppingCartService } from '../../../shared/services/shopping-cart.service';
 import { Observable } from 'rxjs';
+
+import { appUser } from '../../../shared/models/app.user';
 import { ShoppingCart } from '../../../shared/models/shopping-cart';
-import { SnapshotAction } from '@angular/fire/database';
+import { AuthService } from '../../../shared/services/auth.service';
+import { ShoppingCartService } from '../../../shared/services/shopping-cart.service';
 
 
 @Component({
@@ -14,6 +14,7 @@ import { SnapshotAction } from '@angular/fire/database';
 })
 export class BsNavbarComponent implements OnInit {
   appUser: appUser;
+  isNavbarCollapsed = true;
   cart$: Observable<ShoppingCart>;
   constructor(private auth: AuthService, private shoppingCartService: ShoppingCartService) {
   }
@@ -26,5 +27,9 @@ export class BsNavbarComponent implements OnInit {
   logout() {
     this.auth.logout();
   }
+
+toggleNavbarCollapsing() {
+    this.isNavbarCollapsed = !this.isNavbarCollapsed;
+}
 
 }

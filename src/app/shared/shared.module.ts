@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation';
 import { TableModule } from 'primeng/table';
 
+
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductQuantityComponent } from './components/product-quantity/product-quantity.component';
 import { AuthGuard } from './services/auth-guard.service';
